@@ -37,7 +37,6 @@ class CountdownTimer {
     const secs = this.pad(Math.floor((time % (1000 * 60)) / 1000));
     if (time <= 0) {
       clearInterval(intervalId);
-    //   intervalId = null;
     }
     return {
       time,
