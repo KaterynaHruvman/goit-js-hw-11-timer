@@ -4,27 +4,22 @@ class CountdownTimer {
     this.selector = selector;
     this.targetDate = targetDate;
   }
-
   start() {
     this.timer();
   }
-
   timer() {
     const timerDate = this.getTime();
     const refs = {
-      timerRef: document.querySelector(this.selector),
-      days: document.querySelector('span[data-value="days"]'),
-      hours: document.querySelector('span[data-value="hours"]'),
-      mins: document.querySelector('span[data-value="mins"]'),
-      secs: document.querySelector('span[data-value="secs"]'),
+      days: document.querySelector(this.selector).querySelector('span[data-value="days"]'),
+      hours: document.querySelector(this.selector).querySelector('span[data-value="hours"]'),
+      mins: document.querySelector(this.selector).querySelector('span[data-value="mins"]'),
+      secs: document.querySelector(this.selector).querySelector('span[data-value="secs"]'),
     };
-
     refs.days.innerHTML = timerDate.days;
     refs.hours.innerHTML = timerDate.hours;
     refs.mins.innerHTML = timerDate.mins;
     refs.secs.innerHTML = timerDate.secs;
   }
-
   getTime() {
     const targetDate = Date.parse(this.targetDate);
     const time = targetDate - Date.now();
@@ -46,15 +41,17 @@ class CountdownTimer {
       secs,
     };
   }
-
   pad(value) {
     return String(value).padStart(2, '0');
   }
 }
-
 const newYear = new CountdownTimer({
   selector: '#timer-1',
   targetDate: new Date('Dec 31 2021'),
 });
-
+const newYear2 = new CountdownTimer({
+  selector: '#timer-2',
+  targetDate: new Date('Dec 31 2022'),
+});
 newYear.start();
+newYear2.start();
